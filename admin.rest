@@ -1,0 +1,7 @@
+PUT http://localhost:5000/api/admin/surveyor/68fcbdfa7fa76e094afd93c4/approve
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNjZjZjNGMyMmY4MDkyZWY1ZjdkNiIsImVtYWlsIjoicGV0ZXJwYW5AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjEzOTkwNzUsImV4cCI6MTc2MTQzNTA3NX0.SrqOF2jkhfVacnr4AlgChQzcusKyaP5ZRdK6H_C7xMk
+
+{
+    "approve": true
+}

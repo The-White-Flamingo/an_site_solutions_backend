@@ -1,0 +1,97 @@
+POST http://localhost:5000/api/surveyor/signup
+Content-Type: application/json
+
+{
+    "firstName": "Paul",
+    "lastName": "Mensah",
+    "email": "paulmensah@example.com",
+    "phoneNumber": "1234567890",
+    "password": "SecurePaulPass123",
+    "residentialAddress": "123 Main St, Anytown, USA",
+    "postalAddress": "PO Box 456, Anytown, USA",
+    "role": "surveyor"
+}
+###
+
+POST http://localhost:5000/api/surveyor/signin
+Content-Type: application/json
+
+{
+    "email": "paulmensah@example.com",
+    "password": "SecurePaulPass123"
+}
+###
+
+GET http://localhost:5000/api/users
+###
+
+PUT http://localhost:5000/api/surveyor/identify-profile
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0 
+
+{
+    "profilePhoto":"profile-pic.jpg",
+    "IDphoto":"id-photo.jpg",
+    "proofOfCertificate":"cert.pdf"
+}
+###
+
+PUT http://localhost:5000/api/surveyor/profile
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+
+{
+    "firstName":"Dope",
+    "lastName":"Joe",
+    "tagline":"joe dope",
+    "country":"Ghana",
+    "about":"I make quality survey plans",
+    "surveyorType":"Land Surveyor",
+    "languages":[{"language":"English"},{"language":"Twi"}],
+    "yearsOfExperience":5,
+    "projectDetails":"I do whatever",
+    "fileFormat":[{"fileType":"DWF"}],
+    "softwares":[{"name":"Autodesk Maya"},{"name":"Blender"}],
+    "education":[{
+        "title":"BSC Surveyor Studies",
+        "institutionName":"Surveyor Institute of Eduction",
+        "dateFrom":"10-09-2019",
+        "dateTo":"10-09-2023",
+        "description":"Fuck this degree"
+    }],
+    "professionalCertifications":[{"certificateName":"Minding my own business"}]
+}
+###
+
+POST http://localhost:5000/api/surveyor/billing-info
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+
+{
+    "firstName": "Johnathan",
+    "lastName": "Doe",
+    "country": "USA",
+    "companyTitle": "Software Engineer",
+    "city": "Othertown",
+    "address": "456 Elm St, Othertown, USA",
+    "postCode": "67890",
+    "email": "johndoe@example.com",
+    "phone": "0987654321"
+}
+###
+
+PUT http://localhost:5000/api/surveyor/billing-info
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+
+{
+    "firstName": "Johnathan",
+    "lastName": "Doe",
+    "country": "USA",
+    "companyTitle": "Senior Software Engineer",
+    "city": "Othertown",
+    "address": "789 Pine St, Newtown, USA",
+    "postCode": "67890",
+    "email": "johndoe@example.com",
+    "phone": "0987654321"
+}

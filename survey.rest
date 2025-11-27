@@ -1,0 +1,45 @@
+POST http://localhost:5000/api/survey
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGRhN2ZhNzZlMDk0YWZkOTNiZSIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3NjEzOTg4MDcsImV4cCI6MTc2MTQzNDgwN30.IzsRaUu4sUWxxiNK9ZfVh6SBlyS5knUJa45yILh6lCg
+
+{
+    "title":"Full Land boundary survey",
+    "budget":3000,
+    "location":"East Legon, Accra",
+    "additionalNotes":"client wants a full land boundary survey",
+    "documents":[
+        {
+            "file":"document.jpg"
+        },
+        {
+            "file":"document.jpg"
+        }
+    ]
+}
+###
+
+PUT http://localhost:5000/api/68fb68d01a10f5eed12fe241/survey
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmE2MmYyYmJlZjhjYTA3NTIxMWJmNCIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3NjEzMDYxNDYsImV4cCI6MTc2MTM0MjE0Nn0.V2EYYRh_IhVHoqSwLzLqoR9kiLio8XDxVH9x7ribCJY
+
+{
+    "title":"Land boundary survey",
+    "budget":4000,
+    "location":"East Hills, Accra",
+    "additionalNotes":"client wants a land boundary survey on his private property",
+    "documents":[
+        {
+            "file":"document.jpg"
+        },
+        {
+            "file":"document.jpg"
+        },
+        {
+            "file":"document.jpg"
+        }
+    ]
+}
+###
+
+GET http://localhost:5000/api/surveys
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmE2MmYyYmJlZjhjYTA3NTIxMWJmNCIsImVtYWlsIjoiam9obmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3NjEzMDYxNDYsImV4cCI6MTc2MTM0MjE0Nn0.V2EYYRh_IhVHoqSwLzLqoR9kiLio8XDxVH9x7ribCJY
