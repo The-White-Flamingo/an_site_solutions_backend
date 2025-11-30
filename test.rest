@@ -4,12 +4,12 @@ Content-Type: application/json
 {
     "firstName": "Peter",
     "lastName": "Pan",
-    "email": "peterpan@example.com",
+    "email": "peterpan@gmail.com",
     "phoneNumber": "1234567890",
-    "password": "SecurePeterPass123",
+    "password": "SuperSecurePeterPass123",
     "residentialAddress": "123 Main St, Anytown, USA",
     "postalAddress": "PO Box 456, Anytown, USA",
-    "role": "admin"
+    "role": "client"
 }
 ###
 

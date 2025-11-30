@@ -17,6 +17,8 @@ export const signToken = async(user)=>{
         // Include only safe user info in the token payload
         const payload = {
         id: user._id,
+        // firstName: user.firstName,
+        // lastName: user.lastName,
         email: user.email,
         role: user.role,
         };

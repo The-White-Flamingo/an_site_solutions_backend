@@ -40,6 +40,9 @@ export const signup = asyncHandler(async (req, res, next) => {
             message:"Registration successful",
             user:{
                 id: newUser._id,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                // pofilePhoto: newUser.profilePhoto,
                 email: newUser.email,
                 role: newUser.role
             }
@@ -63,12 +66,16 @@ export const signin = asyncHandler(async (req, res, next) => {
         if(!token) return next(errorHandler(401, "Failed to generate token"));
         res.cookie("token",token, { httpOnly: true, 
             // secure: process.env.NODE_ENV === "production",
+            secure: false,
             sameSite: "strict", maxAge: 10 * 60 * 60 * 1000 // 10 hours
         })
         .status(200)
         .json({message:"Login successful",
             user:{
                 id: validUser._id,
+                firstName: validUser.firstName,
+                lastName: validUser.firstName,
+                // pofilePhoto: newUser.profilePhoto,
                 email: validUser.email,
                 role: validUser.role
             },

@@ -8,6 +8,7 @@ import surveyRoutes from "./routes/survey.route.js";
 import disputeRoutes from "./routes/dispute.route.js";
 import surveyorRoutes from "./routes/surveyor.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
+import authUser from "./auth/me.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 connectDB();
 app.use(cors(
     {
+        origin: true,
         credentials: true
     }
 ));
@@ -33,6 +35,8 @@ app.use("/api", clientRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api", surveyRoutes);
 app.use('/api', disputeRoutes);
+
+app.use("/api/auth",authUser);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => { console.log(`Server running on port ${PORT}`); });
