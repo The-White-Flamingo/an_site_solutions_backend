@@ -5,6 +5,21 @@ import Survey from "../models/Survey.js";
 import Dispute from "../models/Dispute.js";
 import User from "../models/User.js";
 
+// signup
+export const signup = asyncHandler(async (req,res,next)=>{
+
+})
+
+// login
+export const login = asyncHandler(async (req,res,next)=>{
+
+})
+
+// logout
+export const logout = asyncHandler(async (req,res,next)=>{
+
+})
+
 /** Approve or Reject Surveyor Profile **/
 export const approveSurveyor = asyncHandler(async (req, res, next) => {
   const { surveyorId } = req.params;

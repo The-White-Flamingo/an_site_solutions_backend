@@ -5,19 +5,15 @@ import User from "../models/User.js";
 const router = Router();
 
 router.get("/me", verifyToken, async (req, res) => {
-    const user = await User.findById(req.user.id);
+  try{
+    const user = await User.findById(req.user.id).select("-password");
+    res.json({user});
   
-    res.json({
-      user: {
-        id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        pofilePhoto: user.profilePhoto,
-        email: user.email,
-        role: user.role
-      }
-    });
-  });
+  }catch(e){
+    return res.status(401).json({message: "Unauthorized" });
+  } 
+   
+});
 
 export default router;
   

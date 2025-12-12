@@ -1,8 +1,38 @@
 import mongoose, {Schema, model} from 'mongoose';
 
 const SurveyorSchema = new Schema({
-    user:{
-        type: mongoose.Schema.Types.ObjectId, ref:'User'
+    firstName: {
+    type: String,
+    required: true
+    },
+    lastName: {
+        type: String,
+        required: true  
+    },
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },phoneNumber:{
+        type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    },
+    residentialAddress:{
+        type: String,
+        required: true
+    },
+    postalAddress:{
+        type: String,
+        required: true
+    },
+    profilePhoto:{
+        type: String,
+        required: false,
+        default: ""
     },
     tagline: {
         type: String,
@@ -78,6 +108,10 @@ const SurveyorSchema = new Schema({
     approved: {
         type: Boolean,
         default: false
+    },
+    role:{
+        type: String,
+        default: "surveyor"
     }
 });
 

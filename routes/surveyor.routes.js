@@ -1,48 +1,61 @@
 import {Router} from 'express';
-import { verifyToken} from '../auth/auth.js';
 import {
-    signup,signin,signout,
+    signup,login,
     identityField,updateProfile,
     setUpBillingInfo,updateBillingInfo,
-    getUsers,completeSurveyorProfile,
+    completeSurveyorProfile,updatePassword,
     getAssignedSurveys,acceptSurvey,       
-    submitWork,declineSurvey,startWork
+    submitWork,declineSurvey,startWork,
+    logout,authenticateSurveyor,getProfile,
+    getDisputedSurveys,getDisputedSurvey,getSurveyById
 } from "../controller/surveyor.controller.js";
 import { verifySurveyor } from '../middleware/verifyRole.js';
+import { verifySurveyorToken } from '../auth/suveyorAuth.js';
+import { upload } from "../middleware/upload.js";
 
 const router = Router();
 
+router.get('/authenticate',verifySurveyorToken, verifySurveyor, authenticateSurveyor);
 // api/surveyor/signup
-router.post('/surveyor/signup',signup);
-
-// api/surveyor/signin
-router.post('/surveyor/signin', signin);
+router.post('/signup',signup);
+// api/surveyor/login
+router.post('/login', login);
+// api/surveyor/logout
+router.post('/logout', verifySurveyorToken, verifySurveyor, logout);
 
 // api/surveyor/identity-profile
-router.put('/surveyor/identity-profile',verifyToken, verifySurveyor,  identityField);
+router.put('/identity-profile',verifySurveyorToken, upload.array('documents', 5), verifySurveyor,  identityField);
 // api/surveyor/profile
-router.put('/surveyor/profile',verifyToken, verifySurveyor, updateProfile);
+router.put('/profile', verifySurveyorToken, verifySurveyor, upload.single('profilePhoto'), updateProfile);
 // api/surveyor/billing-info
-router.post('/surveyor/billing-info',verifyToken, verifySurveyor, setUpBillingInfo);
+router.post('/billing-info', verifySurveyorToken, verifySurveyor, setUpBillingInfo);
 // api/surveyor/billing-info
-router.put('/surveyor/billing-info',verifyToken, verifySurveyor, updateBillingInfo);
-// api/surveyor/signout
-router.post('/surveyor/signout',verifyToken, verifySurveyor, signout);
+router.put('/billing-info', verifySurveyorToken, verifySurveyor, updateBillingInfo);
+// api/surveyor/profile
+router.get("/profile",verifySurveyorToken,verifySurveyor,getProfile);
+// api/surveyor/update-password
+router.put("/update-password",verifySurveyorToken,verifySurveyor,updatePassword);
 
 // api/surveyor/complete-profile
-router.post('/surveyor/complete-profile',verifyToken, verifySurveyor, completeSurveyorProfile);
+router.post('/complete-profile', verifySurveyorToken, verifySurveyor, completeSurveyorProfile);
 // api/surveyor/assigned
-router.get("/surveyor/assigned", getAssignedSurveys);
+router.get("/assigned", verifySurveyorToken, verifySurveyor, getAssignedSurveys);
+// api/surveyor/:surveyId/assigned
+router.get("/:surveyId/assigned", verifySurveyorToken,verifySurveyor,getSurveyById);
 // api/surveyor/:surveyId/accept
-router.put("/surveyor/:surveyId/accept", acceptSurvey);
+router.put("/:surveyId/accept", verifySurveyorToken, verifySurveyor, acceptSurvey);
 // api/surveyor/:surveyId/decline
-router.put("/surveyor/:surveyId/decline", declineSurvey);
+router.put("/:surveyId/decline", verifySurveyorToken, verifySurveyor, declineSurvey);
 // api/surveyor/:surveyId/start
-router.put("/surveyor/:surveyId/start", startWork);
+router.put("/:surveyId/start", verifySurveyorToken, verifySurveyor, startWork);
 // api/surveyor/:surveyId/submit
-router.put("/surveyor/:surveyId/submit", submitWork);
+router.put("/:surveyId/submit", verifySurveyorToken, verifySurveyor, upload.array('documents', 10), submitWork);
 
+// api/surveyor/getDisputedSurvey
+router.get("/disputes",verifySurveyorToken,verifySurveyor,getDisputedSurveys);
+// api/surveyor/:disputeId/dispute
+router.get("/:disputeId/dispute",verifySurveyorToken,verifySurveyor,getDisputedSurvey);
 // get all users
-router.get('/users',getUsers);
+// router.get('/users',getUsers);
 
 export default router;

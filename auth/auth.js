@@ -62,3 +62,24 @@ export const verifyRole = (role)=> {
         next();
     }
 }
+
+export const createRefreshToken = (user) => {
+    return jwt.sign(
+        { id: user._id, role: user.role },
+        process.env.REFRESH_SECRET,
+        { expiresIn: "10h" }
+    );
+}
+
+export const refreshToken = (oldToken) => {
+    try {
+        const decoded = jwt.verify(oldToken, process.env.JWT_SECRET);
+        const newToken = jwt.sign(
+            { id: decoded.id, role: decoded.role },
+            process.env.REFRESH_SECRET, { expiresIn: "7d" }
+        );
+        return newToken;
+    } catch (error) {
+        throw new Error("Unable to refresh token");
+    }
+}

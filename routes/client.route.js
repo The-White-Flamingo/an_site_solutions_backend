@@ -1,22 +1,28 @@
 import {Router} from 'express';
-import { signup, signin, signout, getProfile, updateProfile, setUpBillingInfo, updateBillingInfo } from '../controller/client.controller.js';
-import { verifyToken, verifyRole } from '../auth/auth.js';
+import { signup, login, logout, getProfile, updateProfile, setUpBillingInfo, updateBillingInfo, authClient, updatePassword } from '../controller/client.controller.js';
+import { verifyClientToken } from "../auth/userAuth.js";
+import { verifyClient } from '../middleware/verifyRole.js';
+import { upload } from "../middleware/upload.js";
 
 const router = Router();
 
+// api/authenticate client
+router.get('/authenticate', verifyClientToken, verifyClient, authClient);
 // api/signup
 router.post('/signup', signup);
-// api/signin
-router.post('/signin', signin);
-// api/signout
-router.post('/signout', verifyToken, verifyRole('client'), signout);
+// api/login
+router.post('/login', login);
+// api/logout
+router.post('/logout', verifyClientToken, verifyClient, logout);
 // api/profile
-router.get('/profile', verifyToken,verifyRole('client'), getProfile);
+router.get('/profile', verifyClientToken, verifyClient, getProfile);
 // api/profile
-router.put('/profile', verifyToken,verifyRole('client'), updateProfile);
+router.put('/profile', verifyClientToken, verifyClient, upload.single('profilePhoto'), updateProfile);
 // api/billing-info
-router.post('/billing-info', verifyToken,verifyRole('client'), setUpBillingInfo);
+router.post('/billing-info', verifyClientToken, verifyClient, setUpBillingInfo);
 // api/billing-info
-router.put('/billing-info', verifyToken,verifyRole('client'), updateBillingInfo);
+router.put('/billing-info', verifyClientToken, verifyClient, updateBillingInfo);
+// api/update-password
+router.put('/update-password', verifyClientToken, verifyClient, updatePassword);
 
 export default router;

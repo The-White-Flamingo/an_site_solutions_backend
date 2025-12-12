@@ -1,0 +1,143 @@
+POST http://localhost:5000/api/client/signup
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@gmail.com",
+    "phoneNumber": "1234567890",
+    "password": "password123",
+    "residentialAddress": "123 Main St",
+    "postalAddress": "PO Box 456",
+    "role": "client"
+}
+###
+
+POST http://localhost:5000/api/client/login
+Content-Type: application/json
+
+{
+    "email": "john.doe@gmail.com",
+    "password":"password123"
+}
+###
+
+POST http://localhost:5000/api/client/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###
+
+GET http://localhost:5000/api/client/authenticate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc2OTIwNSwiZXhwIjoxNzY0NzcxMDA1fQ.eyVM688WyCJxypcvZ9jBkdNzSXIS6yUAYEUjxWVGl3I
+###
+
+GET http://localhost:5000/api/client/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc2OTIwNSwiZXhwIjoxNzY0NzcxMDA1fQ.eyVM688WyCJxypcvZ9jBkdNzSXIS6yUAYEUjxWVGl3I
+###
+
+PUT http://localhost:5000/api/client/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc2OTIwNSwiZXhwIjoxNzY0NzcxMDA1fQ.eyVM688WyCJxypcvZ9jBkdNzSXIS6yUAYEUjxWVGl3I
+
+{
+    "firstName":"John",
+    "lastName": "Doe",
+    "email": "john.doe@gmail.com",
+    "phoneNumber": "1234567890",
+    "password": "password123",
+    "residentialAddress": "122 Main St",
+    "postalAddress": "PO Box 356"
+}
+###
+
+GET http://localhost:5000/api/client/surveys
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###
+
+POST http://localhost:5000/api/client/survey
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc2OTIwNSwiZXhwIjoxNzY0NzcxMDA1fQ.eyVM688WyCJxypcvZ9jBkdNzSXIS6yUAYEUjxWVGl3I
+
+{
+    "title": "Customer Satisfaction Survey",
+    "budget": 9000,
+    "location": "New York",
+    "additionalNotes": "Please focus on service quality.",
+    "document":[
+        {
+            "fileName": "survey_details.pdf",
+            "fileUrl": "http://example.com/survey_details.pdf"
+        },
+        {
+            "fileName": "customer_feedback.docx",
+            "fileUrl": "http://example.com/customer_feedback.docx"
+        },
+        {
+            "fileName": "data_collection.xlsx",
+            "fileUrl": "http://example.com/data_collection.xlsx"
+        }
+    ]
+}
+###
+
+DELETE http://localhost:5000/api/client/69303e85d848318a6cc32fc4/survey
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###
+
+PUT http://localhost:5000/api/client/69303e85d848318a6cc32fc4/survey
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc2OTIwNSwiZXhwIjoxNzY0NzcxMDA1fQ.eyVM688WyCJxypcvZ9jBkdNzSXIS6yUAYEUjxWVGl3I
+
+{
+
+    "title": "Updated Customer Satisfaction Survey",
+    "budget": 7000,
+    "location": "San Francisco",
+    "additionalNotes": "Include questions about delivery time.",
+    "deadline": "2024-09-01T00:00:00.000Z",
+    "documents":[
+        {
+            "fileName": "updated_survey_details.pdf",
+            "fileUrl": "http://example.com/updated_survey_details.pdf"
+        },
+        {
+            "fileName": "delivery_feedback.docx",
+            "fileUrl": "http://example.com/delivery_feedback.docx"
+        }
+    ]
+}
+###
+POST http://localhost:5000/api/client/693040ff6654a7d819077752/dispute
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+
+{
+    "reason": "Incorrect Charge",
+    "explanation": "The surveyor did not complete the survey as per the requirements.",
+    "surveyorId": "693040ff6654a7d819077752",
+    "evidence": [
+        {
+            "file": "incomplete_work.pdf"
+        }
+    ],
+    "resolutionPreference": "Refund"
+}
+###
+
+GET http://localhost:5000/api/client/disputes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###
+PUT http://localhost:5000/api/client/6930a90a06ac2c169e1b4d90/cancel
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###
+
+GET http://localhost:5000/api/client/6930a90a06ac2c169e1b4d90/dispute
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzAzMmRmYTdmMzcxZjE4YmExYmU2YiIsInJvbGUiOiJjbGllbnQiLCJlbWFpbCI6ImpvaG4uZG9lQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsImlhdCI6MTc2NDc5NjQ4NywiZXhwIjoxNzY0Nzk4Mjg3fQ.CpWNMeEpbnkLu-yaRFhmwBhQvSgGrw6z_rr1EpThY14
+###

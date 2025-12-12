@@ -3,95 +3,162 @@ Content-Type: application/json
 
 {
     "firstName": "Paul",
-    "lastName": "Mensah",
-    "email": "paulmensah@example.com",
+    "lastName": "Doe",
+    "email": "paul.doe@gmail.com",
     "phoneNumber": "1234567890",
-    "password": "SecurePaulPass123",
-    "residentialAddress": "123 Main St, Anytown, USA",
-    "postalAddress": "PO Box 456, Anytown, USA",
+    "password": "password234",
+    "residentialAddress": "123 Main St",
+    "postalAddress": "PO Box 456",
     "role": "surveyor"
 }
 ###
-
-POST http://localhost:5000/api/surveyor/signin
+POST http://localhost:5000/api/surveyor/login
 Content-Type: application/json
 
 {
-    "email": "paulmensah@example.com",
-    "password": "SecurePaulPass123"
+    "email": "paul.doe@gmail.com",
+    "password": "password234"
 }
 ###
-
-GET http://localhost:5000/api/users
+POST http://localhost:5000/api/surveyor/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyODI3NiwiZXhwIjoxNzY1MDMwMDc2fQ.uoM6wMSDs0xcQ21JHCi41BaHmhfczpLd8hDKdsagNik
 ###
 
-PUT http://localhost:5000/api/surveyor/identify-profile
+GET http://localhost:5000/api/surveyor/profile
 Content-Type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyNjM3NywiZXhwIjoxNzY1MDI4MTc3fQ.iVku5jcE-aDh7tGNjckf41jgG1esLmiFrytEuaLr5mQ
+###
+
+GET http://localhost:5000/api/surveyor/authenticate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyODI3NiwiZXhwIjoxNzY1MDMwMDc2fQ.uoM6wMSDs0xcQ21JHCi41BaHmhfczpLd8hDKdsagNik
+###
+PUT http://localhost:5000/api/surveyor/identity-profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyNTUwNywiZXhwIjoxNzY1MDI3MzA3fQ.1J-jSSWs4GNZMyuA3HBourKnnvfdn1oGtUe0K_2fWQc
 
 {
-    "profilePhoto":"profile-pic.jpg",
-    "IDphoto":"id-photo.jpg",
-    "proofOfCertificate":"cert.pdf"
+    "profilePhoto": "",
+    "IDphoto": "",
+    "proofOfCertificate": ""
 }
 ###
-
 PUT http://localhost:5000/api/surveyor/profile
 Content-Type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
 
 {
-    "firstName":"Dope",
-    "lastName":"Joe",
-    "tagline":"joe dope",
-    "country":"Ghana",
-    "about":"I make quality survey plans",
-    "surveyorType":"Land Surveyor",
-    "languages":[{"language":"English"},{"language":"Twi"}],
-    "yearsOfExperience":5,
-    "projectDetails":"I do whatever",
-    "fileFormat":[{"fileType":"DWF"}],
-    "softwares":[{"name":"Autodesk Maya"},{"name":"Blender"}],
-    "education":[{
-        "title":"BSC Surveyor Studies",
-        "institutionName":"Surveyor Institute of Eduction",
-        "dateFrom":"10-09-2019",
-        "dateTo":"10-09-2023",
-        "description":"Fuck this degree"
-    }],
-    "professionalCertifications":[{"certificateName":"Minding my own business"}]
+    "firstName": "Paul",
+    "lastName": "Porter",
+    "email": "paul.doe@gmail.com",
+    "phoneNumber": "1234567890",
+    "password": "password234",
+    "residentialAddress": "122 Main St",
+    "postalAddress": "PO Box 455",
+    "role": "surveyor"
 }
 ###
 
 POST http://localhost:5000/api/surveyor/billing-info
 Content-Type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
 
 {
-    "firstName": "Johnathan",
-    "lastName": "Doe",
+    "firstName": "Paul",
+    "lastName": "Porter",
     "country": "USA",
-    "companyTitle": "Software Engineer",
-    "city": "Othertown",
-    "address": "456 Elm St, Othertown, USA",
-    "postCode": "67890",
-    "email": "johndoe@example.com",
-    "phone": "0987654321"
+    "companyTitle": "Surveyor Inc",
+    "city": "New York",
+    "address": "123 Main St",
+    "postCode": "10001",
+    "email": "paul.doe@gmail.com",
+    "phone": "1234567890"
+}
+###
+PUT http://localhost:5000/api/surveyor/billing-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
+
+{
+    "firstName": "Paul",
+    "lastName": "Porter",
+    "country": "USA",
+    "companyTitle": "Surveyor LLC",
+    "city": "New York",
+    "address": "124 Main St",
+    "postCode": "10002",
+    "email": "paul.doe@gmail.com",
+    "phone": "1234567890"
 }
 ###
 
-PUT http://localhost:5000/api/surveyor/billing-info
+POST http://localhost:5000/api/surveyor/complete-profile
 Content-Type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmNiZGZhN2ZhNzZlMDk0YWZkOTNjMiIsInJvbGUiOiJzdXJ2ZXlvciIsImlhdCI6MTc2MTM5NzY0NiwiZXhwIjoxNzYxNDMzNjQ2fQ.a4vFFsALR0cUvkxLGBMsZuoS5DIEviqGKB8QOBC-m-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 
 {
-    "firstName": "Johnathan",
-    "lastName": "Doe",
+    "tagline": "Experienced Surveyor",
+    "responseTime": "24 hours",
     "country": "USA",
-    "companyTitle": "Senior Software Engineer",
-    "city": "Othertown",
-    "address": "789 Pine St, Newtown, USA",
-    "postCode": "67890",
-    "email": "johndoe@example.com",
-    "phone": "0987654321"
+    "about": "I have over 10 years of experience in surveying.",
+    "surveyorType": "Land Surveyor",
+    "languages": [{"language": "English"}, {"language": "Spanish"}],
+    "yearsOfExperience": 10,
+    "projectDetails": "Completed over 100 projects successfully.",
+    "fileFormat": [{"fileType": "PDF"}, {"fileType": "DWG"}],
+    "softwares": [{"name": "AutoCAD"}, {"name": "GIS"}],
+    "professionalCertifications":[
+        {
+            "certificateName": "Certified Surveyor"
+        }
+    ],
+    "education": [
+        {
+            "title": "B.Sc. in Geomatics",
+            "institutionName": "University of Surveying",
+            "dateFrom": "2010-09-01",
+            "dateTo": "2014-06-30",
+            "description": "Studied various surveying techniques and technologies."
+        }
+    ]
 }
+###
+
+GET http://localhost:5000/api/surveyor/assigned
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
+###
+
+GET http://localhost:5000/api/surveyor/disputes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyODI3NiwiZXhwIjoxNzY1MDMwMDc2fQ.uoM6wMSDs0xcQ21JHCi41BaHmhfczpLd8hDKdsagNik
+###
+PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/accept
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
+###
+PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/decline
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
+###
+Put http://localhost:5000/api/surveyor/693040ff6654a7d819077752/start
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
+###
+PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/submit
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
+
+{
+    "workSubmission": {
+        "deliveryNotes": "Survey completed successfully.",
+        "files": [
+            {
+                "fileName": "survey_report.pdf",
+                "fileUrl": "http://example.com/survey_report.pdf"
+            }
+        ]
+    }
+}
+###

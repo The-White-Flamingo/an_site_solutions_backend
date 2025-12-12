@@ -85,7 +85,8 @@ const SurveySchema = new Schema({
 
   documents: [
     {
-      file: { type: String }
+      fileName: { type: String },
+      fileUrl: { type: String }
     }
   ],
 
@@ -94,7 +95,12 @@ const SurveySchema = new Schema({
     enum: ["unpaid", "paid", "expired"],
     default: "unpaid"
   },
-  paymentDeadline: { type: Date },
+
+  paymentDeadline: { type: Date,
+    required: false,
+    default: null
+    // default: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) // 2 week from creation
+  },
 
   dispute: {
     type: mongoose.Schema.Types.ObjectId,
@@ -113,40 +119,55 @@ const SurveySchema = new Schema({
     default: "pending"
   },
 
+  deadline: { type: Date,
+    required: false,
+    default: null
+    // default: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000) // 4 weeks from creation
+   },
+
   assignedSurveyor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Surveyor",
     default: null
   },
 
+  assigned:{
+    type: Boolean,
+    default: false
+  },
+
   assignmentExpiresAt: {
     type: Date,
     default: null
+    // default: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 1week from creation
   },
 
   surveyStatus: {
     type: String,
     enum: [
-      "pending",
+      "pending_admin_approval", 
+      "approved", 
+      "rejected",
       "assigned",
       "accepted",
-      "declined",
       "ongoing",
       "submitted",
-      "completed"
+      "completed",
+      "disputed",
+      "requested"
     ],
-    default: "pending"
+    default: "pending_admin_approval"
   },
 
   workSubmission: {
-    deliveryNotes: { type: String },
-    files: [
-      {
-        fileName: { type: String },
-        fileUrl: { type: String }
-      }
-    ]
-  },
+  deliveryNotes: { type: String, default: "" },
+  files: [
+    {
+      fileName: { type: String, required: true },
+      fileUrl: { type: String, required: true }
+    }
+  ]
+},
 
   createdAt: { type: Date, default: Date.now }
 });

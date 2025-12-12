@@ -1,10 +1,10 @@
 import {Router} from 'express';
-import { verifyToken, verifyRole } from '../auth/auth.js';
-import {getSurveyById,getSurveys,getSurveysByClient,createSurvey,updateSurveyById} from "../controller/survey.controller.js";
+import { verifyClientToken } from '../auth/userAuth.js';
+import {getSurveyById,getSurveysByClient,createSurvey,updateSurveyById,deleteSurveyById} from "../controller/survey.controller.js";
 import {verifyClient} from '../middleware/verifyRole.js';
 
 const router = Router();
-router.use(verifyToken,verifyClient); // protect all survey routes
+router.use(verifyClientToken,verifyClient); // protect all survey routes
 
 // api/survey
 router.post('/survey',createSurvey);
@@ -14,5 +14,7 @@ router.put('/:surveyId/survey',updateSurveyById);
 router.get('/surveys',getSurveysByClient);
 // api/:surveyId/survey
 router.get('/:surveyId/survey',getSurveyById);
+// api/:surveyId/survey
+router.delete('/:surveyId/survey',deleteSurveyById);
 
 export default router;

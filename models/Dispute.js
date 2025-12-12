@@ -16,17 +16,19 @@ const DisputeSchema = new Schema({
     reason: { type: String, enum: ["Incorrect Charge", "Survey quality work", "Survey not complete", "Delayed service"], required: true },
     explanation: { type: String, required: true },
     evidence: [{
-        file:{type: String}
+        fileName:{type: String},
+        fileUrl:{type: String},
     }],
     resolutionPreference: {
         type: String,
-        enum: ["Refund", "Redo survey", "Rework by surveyor", "Mediation", "Other"],
+        enum: ["Pending","Refund", "Redo survey", "Rework by surveyor", "Mediation", "Other"],
         required: true,
+        default: "Pending"
     },
     status: {
         type: String,
-        enum: ["pending_review", "resolved", "cancelled"],
-        default: "pending_review",
+        enum: ["Pending", "Resolved", "Cancelled", "Under Review"],
+        default: "Pending",
     },
     comments:[{
         type: mongoose.Schema.Types.ObjectId, ref: 'Comment',
@@ -36,5 +38,5 @@ const DisputeSchema = new Schema({
     updatedAt: { type: Date, default: Date.now },
 });
 
-const Dispute = model("Review",DisputeSchema);
+const Dispute = model("Dispute",DisputeSchema);
 export default Dispute;

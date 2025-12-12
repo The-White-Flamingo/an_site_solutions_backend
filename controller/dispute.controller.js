@@ -7,8 +7,14 @@ import asyncHandler from "express-async-handler";
 // raise dispute (client)
 export const raiseDispute = asyncHandler( async(req,res,next)=>{
     try{
+        const survey = await Survey.findOne({_id: req.params.surveyId, user: req.user.id});
+        if(!survey) return next(errorHandler(404, "No such survey found"));
+
+        if(survey.status === "completed" || survey.status === "paid" || survey.status === "cancelled" || survey.status === "disputed" || survey.status === "resolved" || survey.assigned || survey.paymentDeadline < Date.now()){
+            return next(errorHandler(400, "Cannot raise dispute on completed or paid surveys"));
+        }
         const {reason,explanation,surveyorId,evidence,resolutionPreference} = req.body;
-        const dispute = new Dispute({
+        const dispute = await Dispute.create({
             user: req.user.id,
             surveyor: surveyorId,
             survey: req.params.surveyId,
@@ -18,9 +24,8 @@ export const raiseDispute = asyncHandler( async(req,res,next)=>{
             resolutionPreference
         });
         if(!dispute) return next(errorHandler(401,"Failed to raise dispute"));
-        const survey = await Survey.findByIdAndUpdate({user: req.user.id},{status: "disputed",dispute: dispute._id});
-        if(!survey) return next(errorHandler(404, "No such survey"));
-        await survey.save()
+        survey.surveyStatus = "disputed";
+        await survey.save();
 
         await dispute.save();
         res.status(200).json({
@@ -69,8 +74,13 @@ export const cancelDispute = asyncHandler( async(req,res,next)=>{
         if(!dispute) return next(errorHandler(404, "No such dispute found"));
         res.status(200).json({
             message:"Dispute Cancelled",
-            dispute
+            dispute,
+            ok: true
         });
+        const survey = await Survey.findById(dispute.survey);
+        survey.surveyStatus = "ongoing";
+        survey.deadline = Date.now() + 7*24*60*60*1000; // extend deadline by 7 days
+        await survey.save();
     }catch(error){
         next(error);
     }
@@ -98,10 +108,14 @@ export const commentDispute = asyncHandler( async(req,res,next)=>{
     }
 })
 // get disputes by client (client)
-export const disputesByClient = asyncHandler( async(req,res,next)=>{
+export const clientDisputes = asyncHandler( async(req,res,next)=>{
     try{
-        const disputes = await Dispute.find({user: req.user.id}).populate("survey surveyor");
+        const disputes = await Dispute.find({user: req.user.id})
+        .populate("survey surveyor");
         if(!disputes) return next(errorHandler(404, "No disputes found"));
+        res.status(200).json({
+            disputes
+        });
     }catch(error){
         next(error);
     }
@@ -109,8 +123,11 @@ export const disputesByClient = asyncHandler( async(req,res,next)=>{
 // get dispute by client (client/admin)
 export const disputeByClient = asyncHandler( async(req,res,next)=>{
     try{
-        const disputes = await Dispute.findOne({_id:req.params.disputeId,user: req.user.id}).populate("survey surveyor");
+        const disputes = await Dispute.findById({_id:req.params.disputeId,user: req.user.id}).populate("survey surveyor");
         if(!disputes) return next(errorHandler(404, "No dispute found"));
+        res.status(200).json({
+            disputes
+        });
     }catch(error){
         next(error);
     }

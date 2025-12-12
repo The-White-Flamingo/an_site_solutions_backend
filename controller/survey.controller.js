@@ -5,6 +5,14 @@ import asyncHandler from "express-async-handler";
 // create new survey
 export const createSurvey = asyncHandler( async(req,res,next)=>{
     try{
+        if(!req.file && req.body.documents) {
+            req.body.documents = req.body.documents;
+        } else if (req.file) {
+            req.body.documents = req.file.path;
+        }
+
+        const uploadedDocuments = req.body.documents;
+
         const userId = req.user.id;
         const {
             title,budget,
@@ -18,8 +26,7 @@ export const createSurvey = asyncHandler( async(req,res,next)=>{
             budget,
             location,
             additionalNotes,
-            documents
-            // $push: { documents: documents}
+            documents: uploadedDocuments,
             // createdAt: createdAt || Date.now
         })
         if(!createSurvey) return next(errorHandler(401, "Failed to create survey"));
@@ -27,7 +34,8 @@ export const createSurvey = asyncHandler( async(req,res,next)=>{
 
         res.status(200).json({
             message: "Survey created successfully",
-            createSurvey
+            createSurvey,
+            ok: true,
         })
     }catch(error){
         next(error)
@@ -37,9 +45,15 @@ export const createSurvey = asyncHandler( async(req,res,next)=>{
 // update survey
 export const updateSurveyById = asyncHandler(async(req,res,next)=>{
     try{
+        if(!req.file && req.body.documents) {
+            req.body.documents = req.body.documents;
+        } else if (req.file) {
+            req.body.documents = req.file.path;
+        }
         const {
             title,budget,
-            location,additionalNotes,documents
+            location,additionalNotes,
+            documents
         } = req.body;
 
         const updateSurvey = await Survey.findByIdAndUpdate(req.params.surveyId,{
@@ -54,7 +68,8 @@ export const updateSurveyById = asyncHandler(async(req,res,next)=>{
 
         res.status(200).json({
             message: "Survey updated successfully",
-            updateSurvey
+            updateSurvey,
+            ok: true,
         })
     }catch(error){
         next(error);
@@ -101,3 +116,24 @@ export const getSurveys = asyncHandler(async(req,res,next)=>{
         next(error);
     }
 })
+
+// delete survey
+export const deleteSurveyById = asyncHandler(async(req,res,next)=>{
+    try{
+        const userId = req.user.id;
+        const findSurvey = await Survey.findOne({
+            _id: req.params.surveyId,
+            user: userId
+        });
+        if(!findSurvey) return next(errorHandler(404, "Survey not found or you are not authorized to delete this survey"));
+        if(findSurvey.surveyStatus === "approved" || findSurvey.assigned === "assigned" || findSurvey.surveyStatus === "accepted"){
+            return next(errorHandler(403, "Cannot delete survey that is already approved or assigned to a surveyor"));
+        }
+        
+        const deletedSurvey =  await Survey.findByIdAndDelete(req.params.surveyId);
+        if(!deletedSurvey) return next(errorHandler(404, "Survey not found or already deleted"));
+        res.status(200).json({message: "Survey deleted successfully",ok:true});
+    }catch(error){
+        next(error);
+    }
+});

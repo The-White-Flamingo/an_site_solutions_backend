@@ -1,19 +1,19 @@
 import {Router} from 'express';
-import { verifyToken, verifyRole } from '../auth/auth.js';
-import {raiseDispute,commentDispute,cancelDispute,disputesByClient,disputeByClient} from "../controller/dispute.controller.js";
+import {raiseDispute,commentDispute,cancelDispute,clientDisputes,disputeByClient} from "../controller/dispute.controller.js";
+import { verifyClientToken } from '../auth/userAuth.js';
+import { verifyClient } from '../middleware/verifyRole.js';
 
 const router = Router();
-router.use(verifyToken,verifyRole('client'));
 
-// api/:surveyId/dispute
-router.post('/:surveyId/dispute',raiseDispute);
-// api/dispute/cancel
-router.put('/:disputeId/cancel',cancelDispute);
-// api/:disputeId/comment
-router.post('/:disputeId/comment',commentDispute);
-// api/disputes
-router.get('/disputes',disputesByClient);
-// api/:disputeId/dispute
-router.get('/:disputeId/dispute',disputeByClient);
+// api/client/:surveyId/dispute
+router.post('/:surveyId/dispute',verifyClientToken,verifyClient,raiseDispute);
+// api/client/:disputeId/cancel
+router.put('/:disputeId/cancel',verifyClientToken,verifyClient,cancelDispute);
+// api/client/:disputeId/comment
+router.post('/:disputeId/comment',verifyClientToken,verifyClient,commentDispute);
+// api/client/disputes
+router.get('/disputes',verifyClientToken,verifyClient,clientDisputes); 
+// api/client/:disputeId/dispute
+router.get('/:disputeId/dispute',verifyClientToken,verifyClient,disputeByClient);
 
 export default router;
