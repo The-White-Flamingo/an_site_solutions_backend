@@ -22,12 +22,10 @@ Content-Type: application/json
 ###
 POST http://localhost:5000/api/surveyor/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyODI3NiwiZXhwIjoxNzY1MDMwMDc2fQ.uoM6wMSDs0xcQ21JHCi41BaHmhfczpLd8hDKdsagNik
 ###
 
 GET http://localhost:5000/api/surveyor/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyNjM3NywiZXhwIjoxNzY1MDI4MTc3fQ.iVku5jcE-aDh7tGNjckf41jgG1esLmiFrytEuaLr5mQ
 ###
 
 GET http://localhost:5000/api/surveyor/authenticate
@@ -46,7 +44,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1Y
 ###
 PUT http://localhost:5000/api/surveyor/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
 
 {
     "firstName": "Paul",
@@ -62,7 +59,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1Y
 
 POST http://localhost:5000/api/surveyor/billing-info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
 
 {
     "firstName": "Paul",
@@ -78,7 +74,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1Y
 ###
 PUT http://localhost:5000/api/surveyor/billing-info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc4OTY1NywiZXhwIjoxNzY0NzkxNDU3fQ.rLdXTilUMbMkqRKcMOwqu6cmnqOd6l0C_N_PZyBiPgA
 
 {
     "firstName": "Paul",
@@ -95,7 +90,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1Y
 
 POST http://localhost:5000/api/surveyor/complete-profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 
 {
     "tagline": "Experienced Surveyor",
@@ -127,28 +121,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1Y
 
 GET http://localhost:5000/api/surveyor/assigned
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 ###
 
 GET http://localhost:5000/api/surveyor/disputes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NTAyODI3NiwiZXhwIjoxNzY1MDMwMDc2fQ.uoM6wMSDs0xcQ21JHCi41BaHmhfczpLd8hDKdsagNik
 ###
 PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/accept
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 ###
 PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/decline
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 ###
 Put http://localhost:5000/api/surveyor/693040ff6654a7d819077752/start
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 ###
 PUT http://localhost:5000/api/surveyor/693040ff6654a7d819077752/submit
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzA4ZDY1YmJlYmE2YjZhYzVkYTk1NiIsInJvbGUiOiJzdXJ2ZXlvciIsImVtYWlsIjoicGF1bC5kb2VAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiUGF1bCIsImlhdCI6MTc2NDc5Mzk0MCwiZXhwIjoxNzY0Nzk1NzQwfQ.6UUs-GBSCrI6-s33Nr32deuljyGR0bYx7l4RVvVztlE
 
 {
     "workSubmission": {
